@@ -123,10 +123,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     //deserialize the credential from SharedPreferences if it exists
-    private fun getLocalCredential(): DbxCredential? {
-        val sharedPreferences = getSharedPreferences("dropbox-sample", MODE_PRIVATE)
-        val serializedCredential = sharedPreferences.getString("credential", null) ?: return null
-        return DbxCredential.Reader.readFully(serializedCredential)
+    private fun getLocalCredential(): DbxCredential {
+//        val sharedPreferences = getSharedPreferences("dropbox-sample", MODE_PRIVATE)
+//        val serializedCredential = sharedPreferences.getString("credential", null) ?: return null
+//        return DbxCredential.Reader.readFully(serializedCredential)
+
+            return DbxCredential("sl.BDguqKEgS4aDSXH-4gff0hOvHS7J3g8Jwk9gz159PibSuO1qZCzwuGeXlsgPrC6Wdf5GqsXa7UQM3dp7X1xl5utbW5b2ATQGY-d3sclPMC25fPD4tzEQk2xYJdDWoPh8huobwB--mMjV", );
     }
 
     //serialize the credential and store in SharedPreferences

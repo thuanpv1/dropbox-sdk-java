@@ -27,25 +27,25 @@ public class Main
     {
         // Only display important log messages.
         Logger.getLogger("").setLevel(Level.WARNING);
+//
+//        if (args.length != 1) {
+//            System.out.println("");
+//            System.out.println("Usage: COMMAND <auth-file>");
+//            System.out.println("");
+//            System.out.println(" <auth-file>: An \"auth file\" that contains the information necessary to make");
+//            System.out.println("    an authorized Dropbox API request.  Generate this file using the");
+//            System.out.println("    \"authorize\" example program.");
+//            System.out.println("");
+//            System.exit(1);
+//            return;
+//        }
 
-        if (args.length != 1) {
-            System.out.println("");
-            System.out.println("Usage: COMMAND <auth-file>");
-            System.out.println("");
-            System.out.println(" <auth-file>: An \"auth file\" that contains the information necessary to make");
-            System.out.println("    an authorized Dropbox API request.  Generate this file using the");
-            System.out.println("    \"authorize\" example program.");
-            System.out.println("");
-            System.exit(1);
-            return;
-        }
-
-        String argAuthFile = args[0];
+//        String argAuthFile = args[0];
 
         // Use DbxCredential instead of DbxAuthInfo.
         DbxCredential credential;
         try {
-            credential = DbxCredential.Reader.readFromFile(argAuthFile);
+            credential = DbxCredential.Reader.readFromFile("test.txt");
         }
         catch (JsonReader.FileLoadException ex) {
             System.err.println("Error loading <auth-file>: " + ex.getMessage());
@@ -65,6 +65,19 @@ public class Main
         }
         catch (DbxException ex) {
             System.err.println("Error making API call: " + ex.getMessage());
+            
+            try {
+				credential.refresh(requestConfig);
+				System.out.println("===>>" + credential.getAccessToken());
+				dbxClient = new DbxClientV2(requestConfig, credential);
+				dbxAccountInfo = dbxClient.users()
+		                .getCurrentAccount();
+				 System.out.print(dbxAccountInfo.toStringMultiline());
+				
+			} catch (DbxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             System.exit(1); return;
         }
 

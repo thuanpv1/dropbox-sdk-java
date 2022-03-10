@@ -27,64 +27,65 @@ public class Main {
         // Only display important log messages.
         Logger.getLogger("").setLevel(Level.WARNING);
 
-        if (args.length != 3) {
-            System.err.println("Usage: COMMAND <app-info-file> <auth-file-output> <mode>");
-            System.err.println("");
-            System.err.println("<app-info-file>: a JSON file with information about your API app.  Example:");
-            System.err.println("");
-            System.err.println("  {");
-            System.err.println("    \"key\": \"Your Dropbox API app key...\",");
-            System.err.println("    \"secret\": \"Your Dropbox API app secret...\"");
-            System.err.println("  }");
-            System.err.println("");
-            System.err.println("  Get an API app key by registering with Dropbox:");
-            System.err.println("    https://dropbox.com/developers/apps");
-            System.err.println("");
-            System.err.println("<auth-file-output>: If authorization is successful, the resulting API");
-            System.err.println("  credential will be saved to this file, which can then be used with");
-            System.err.println("  other example programs, such as the one in \"examples/account-info\".");
-            System.err.println("");
-            System.err.println("<mode>: value can only be short_live_token, pkce, scope, or incremental.");
-            System.err.println("  short_live_token: authorization will request short_lived_token");
-            System.err.println("    together with refresh token and expiration time.");
-            System.err.println("  pkce: authorization will run short_live_token without app secret");
-            System.err.println("    use that when you have a client side only app without server.");
-            System.err.println("  scope: authorization will request specific scope.");
-            System.err.println("");
-            System.exit(1);
-            return;
-        }
+//        if (args.length != 3) {
+//            System.err.println("Usage: COMMAND <app-info-file> <auth-file-output> <mode>");
+//            System.err.println("");
+//            System.err.println("<app-info-file>: a JSON file with information about your API app.  Example:");
+//            System.err.println("");
+//            System.err.println("  {");
+//            System.err.println("    \"key\": \"Your Dropbox API app key...\",");
+//            System.err.println("    \"secret\": \"Your Dropbox API app secret...\"");
+//            System.err.println("  }");
+//            System.err.println("");
+//            System.err.println("  Get an API app key by registering with Dropbox:");
+//            System.err.println("    https://dropbox.com/developers/apps");
+//            System.err.println("");
+//            System.err.println("<auth-file-output>: If authorization is successful, the resulting API");
+//            System.err.println("  credential will be saved to this file, which can then be used with");
+//            System.err.println("  other example programs, such as the one in \"examples/account-info\".");
+//            System.err.println("");
+//            System.err.println("<mode>: value can only be short_live_token, pkce, scope, or incremental.");
+//            System.err.println("  short_live_token: authorization will request short_lived_token");
+//            System.err.println("    together with refresh token and expiration time.");
+//            System.err.println("  pkce: authorization will run short_live_token without app secret");
+//            System.err.println("    use that when you have a client side only app without server.");
+//            System.err.println("  scope: authorization will request specific scope.");
+//            System.err.println("");
+//            System.exit(1);
+//            return;
+//        }
 
-        String argAppInfoFile = args[0];
-        String argAuthFileOutput = args[1];
+//        String argAppInfoFile = args[0];
+        String argAuthFileOutput = "test.txt";
 
         // Read app info file (contains app key and app secret)
         DbxAppInfo appInfo;
-        try {
-            appInfo = DbxAppInfo.Reader.readFromFile(argAppInfoFile);
-        } catch (JsonReader.FileLoadException ex) {
-            System.err.println("Error reading <app-info-file>: " + ex.getMessage());
-            System.exit(1); return;
-        }
+//        try {
+            appInfo = new DbxAppInfo("v5qlwnbrjewl6ei", "c7xjhcq78hd64mv");
+//        } catch (JsonReader.FileLoadException ex) {
+//            System.err.println("Error reading <app-info-file>: " + ex.getMessage());
+//            System.exit(1); return;
+//        }
 
         // Run through Dropbox API authorization process
         DbxAuthFinish authFinish = null;
 
-        switch (args[2]) {
-            case "short_live_token":
-                authFinish = new ShortLiveTokenAuthorize().authorize(appInfo);
-                break;
-            case "pkce":
-                authFinish = new PkceAuthorize().authorize(appInfo);
-                break;
-            case "scope":
-                authFinish = new ScopeAuthorize().authorize(appInfo);
-                break;
-            default:
-                System.err.println("Error reading <mode> : " + args[2]);
-                System.exit(1);
-        }
+//        switch (args[2]) {
+//            case "short_live_token":
+//                authFinish = new ShortLiveTokenAuthorize().authorize(appInfo);
+//                break;
+//            case "pkce":
+//                authFinish = new PkceAuthorize().authorize(appInfo);
+//                break;
+//            case "scope":
+//                authFinish = new ScopeAuthorize().authorize(appInfo);
+//                break;
+//            default:
+//                System.err.println("Error reading <mode> : " + args[2]);
+//                System.exit(1);
+//        }
 
+        authFinish = new PkceAuthorize().authorize(appInfo);
         System.out.println("Authorization complete.");
         System.out.println("- User ID: " + authFinish.getUserId());
         System.out.println("- Account ID: " + authFinish.getAccountId());
