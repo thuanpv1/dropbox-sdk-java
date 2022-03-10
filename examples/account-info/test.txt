@@ -2,6 +2,6 @@
   "access_token" : "xxx",
   "expires_at" : 1646923121890,
   "refresh_token" : "muqUFcpFV4IAAAAAAAAAAdT59VQ1xptUdTdkJtyVaj2WOtyNoAN2SxahiJmkoE-s",
-  "app_key" : "v5qlwnbrjewl6ei",
-  "app_secret" : "c7xjhcq78hd64mv"
+  "app_key" : "APP_KEY",
+  "app_secret" : "APP_SECRET"
 }

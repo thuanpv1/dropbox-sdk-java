@@ -2,6 +2,6 @@
   "access_token" : "sl.BDjoLA5M3JFlR39r-0i21Hxsig-KGkN4nJVyX0y4WdvoQXXu5VG0IGWSp4Oq_as58dvyoH1mEBpPHrjjnZZMwYIyU4ulYm0EEvZukYMg80lm0s2xP3hkuB4RVqPWjsHKT22bzKcseSFy",
   "expires_at" : 1646923121890,
   "refresh_token" : "muqUFcpFV4IAAAAAAAAAAdT59VQ1xptUdTdkJtyVaj2WOtyNoAN2SxahiJmkoE-s",
-  "app_key" : "v5qlwnbrjewl6ei",
-  "app_secret" : "c7xjhcq78hd64mv"
+  "app_key" : "APP_KEY",
+  "app_secret" : "APP_SECRET"
 }

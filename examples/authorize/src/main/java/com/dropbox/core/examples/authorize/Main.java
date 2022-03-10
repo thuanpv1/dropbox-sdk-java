@@ -61,7 +61,7 @@ public class Main {
         // Read app info file (contains app key and app secret)
         DbxAppInfo appInfo;
 //        try {
-            appInfo = new DbxAppInfo("v5qlwnbrjewl6ei", "c7xjhcq78hd64mv");
+            appInfo = new DbxAppInfo("APP_KEY", "APP_SECRET");
 //        } catch (JsonReader.FileLoadException ex) {
 //            System.err.println("Error reading <app-info-file>: " + ex.getMessage());
 //            System.exit(1); return;
